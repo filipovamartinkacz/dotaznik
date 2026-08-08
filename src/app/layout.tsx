@@ -21,7 +21,7 @@ const thasadith = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "JsemBlažena.cz - průzkum",
+  title: "JsemBlažená.cz - průzkum",
   robots: { index: false, follow: false },
 };
 

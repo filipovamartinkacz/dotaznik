@@ -24,6 +24,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# zdrojové fotky (nezpracované, velké) — do produkce jdou jen public/*.webp
+/photos
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
