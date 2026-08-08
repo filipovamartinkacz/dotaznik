@@ -377,8 +377,8 @@ export default function Survey() {
           return (
             <div key={choice.text}>
               <label
-                className={`flex items-center gap-3 rounded-lg border p-3 transition ${
-                  isChecked ? "border-primary bg-secondary" : disabled ? "border-border opacity-40" : "border-border"
+                className={`flex items-center gap-3 rounded-lg border bg-secondary p-3 transition ${
+                  isChecked ? "border-primary" : disabled ? "border-border opacity-40" : "border-border"
                 }`}
               >
                 <input
@@ -415,8 +415,8 @@ export default function Survey() {
           return (
             <div key={choice.text}>
               <label
-                className={`flex items-center gap-3 rounded-lg border p-3 transition ${
-                  isChecked ? "border-primary bg-secondary" : "border-border"
+                className={`flex items-center gap-3 rounded-lg border bg-secondary p-3 transition ${
+                  isChecked ? "border-primary" : "border-border"
                 }`}
               >
                 <input
