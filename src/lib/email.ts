@@ -3,6 +3,7 @@ import { Resend } from "resend";
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 const FROM = "JsemBlažená.cz <dotaznik@jsemblazena.lazena.cz>";
+const REPLY_TO = "info@lazena.cz";
 // Náhodný, neuhodnutelný název souboru + noindex hlavička (next.config.ts)
 // a robots.txt disallow — soubor se nemá dát najít vyhledávači, jen přes
 // tenhle odkaz v e-mailu.
@@ -17,6 +18,7 @@ export async function sendDekovaciEmail(to: string) {
   await resend.emails.send({
     from: FROM,
     to,
+    replyTo: REPLY_TO,
     subject: "🎁 Děkuji za vyplnění dotazníku — tady je tvůj dárek",
     html: `
       <div style="font-family: sans-serif; max-width: 560px; margin: 0 auto; color: #1a1a1a;">
