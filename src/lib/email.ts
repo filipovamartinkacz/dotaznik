@@ -3,7 +3,7 @@ import { Resend } from "resend";
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 const FROM = "JsemBlažená.cz <dotaznik@jsemblazena.lazena.cz>";
-const REPLY_TO = "info@lazena.cz";
+const REPLY_TO = "email@lazena.cz";
 // Náhodný, neuhodnutelný název souboru + noindex hlavička (next.config.ts)
 // a robots.txt disallow — soubor se nemá dát najít vyhledávači, jen přes
 // tenhle odkaz v e-mailu.
