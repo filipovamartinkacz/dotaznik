@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { validateOutro, escapeHtml, CONSENT_VERSION, type OutroState } from "@/lib/outro-validation";
+import { sendDekovaciEmail } from "@/lib/email";
 
 export async function POST(request: Request) {
   const scriptUrl = process.env.GOOGLE_SCRIPT_URL;
@@ -68,6 +69,16 @@ export async function POST(request: Request) {
     const text = await response.text();
     console.error("GOOGLE_SCRIPT_URL response", response.status, text);
     return NextResponse.json({ error: "Uložení do tabulky selhalo" }, { status: 502 });
+  }
+
+  // Poděkování + PDF — jen když je vyplněný e-mail. Nekritické: odpovědi
+  // jsou v Sheetu uložené i kdyby se e-mail nepodařilo odeslat.
+  if (outro?.email.trim()) {
+    try {
+      await sendDekovaciEmail(outro.email.trim());
+    } catch (err) {
+      console.error("sendDekovaciEmail failed", err);
+    }
   }
 
   return NextResponse.json({ ok: true });
