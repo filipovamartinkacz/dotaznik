@@ -6,7 +6,7 @@ const FROM = "JsemBlažená.cz <dotaznik@jsemblazena.lazena.cz>";
 // Náhodný, neuhodnutelný název souboru + noindex hlavička (next.config.ts)
 // a robots.txt disallow — soubor se nemá dát najít vyhledávači, jen přes
 // tenhle odkaz v e-mailu.
-const PDF_URL = "https://dotaznik.lazena.cz/soubory/50-cest-k-sobe-868e1be595.pdf";
+const PDF_URL = "https://dotaznik.lazena.cz/soubory/JsemBlazena.cz-50-cest-k-sobe-868e1be595.pdf";
 
 // Poděkování + slíbený dárek (PDF) po vyplnění dotazníku. Posílá se jen
 // když žena vyplnila e-mail — bez RESEND_API_KEY se tiše přeskočí (stejný

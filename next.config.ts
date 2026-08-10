@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
       {
         // PDF dárek — URL má náhodný název (viz email.ts), ale uložený
         // soubor má mít hezký, srozumitelný název.
-        source: "/soubory/50-cest-k-sobe-868e1be595.pdf",
+        source: "/soubory/JsemBlazena.cz-50-cest-k-sobe-868e1be595.pdf",
         headers: [
           {
             key: "Content-Disposition",
