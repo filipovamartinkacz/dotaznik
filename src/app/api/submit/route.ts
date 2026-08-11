@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { validateOutro, escapeHtml, CONSENT_VERSION, type OutroState } from "@/lib/outro-validation";
-import { sendDekovaciEmail } from "@/lib/email";
+import { sendDekovaciEmail, sendNewsletterNotification, sendExpertNotification } from "@/lib/email";
 
 export async function POST(request: Request) {
   const scriptUrl = process.env.GOOGLE_SCRIPT_URL;
@@ -78,6 +78,22 @@ export async function POST(request: Request) {
       await sendDekovaciEmail(outro.email.trim());
     } catch (err) {
       console.error("sendDekovaciEmail failed", err);
+    }
+  }
+
+  // Interní upozornění — nekritické stejně jako výše.
+  if (outro?.newsletterConsent) {
+    try {
+      await sendNewsletterNotification(outro.email.trim());
+    } catch (err) {
+      console.error("sendNewsletterNotification failed", err);
+    }
+  }
+  if (outro?.isExpert) {
+    try {
+      await sendExpertNotification(outro.email.trim(), outro.expertText.trim());
+    } catch (err) {
+      console.error("sendExpertNotification failed", err);
     }
   }
 

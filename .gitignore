@@ -27,6 +27,12 @@ yarn-error.log*
 # zdrojové fotky (nezpracované, velké) — do produkce jdou jen public/*.webp
 /photos
 
+# exporty dat s osobními údaji (e-maily respondentek) a vygenerované reporty
+# — nikdy do gitu, ani omylem
+*.csv
+.~lock.*
+statistiky-report.html
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
