@@ -68,6 +68,10 @@ export default function Survey() {
   const [outroSubmitAttempted, setOutroSubmitAttempted] = useState(false);
   const outroEmailRef = useRef<HTMLInputElement>(null);
   const outroExpertTextRef = useRef<HTMLTextAreaElement>(null);
+  // Pojistka proti dvojímu odeslání (dvojklik/dvojité klepnutí) — ref se
+  // nastaví synchronně, na rozdíl od stavu nečeká na překreslení, takže
+  // zachytí i druhý klik, který přijde dřív, než se schová tlačítko.
+  const submittingRef = useRef(false);
 
   // Sdílení dotazníku na děkovací stránce
   const [shareCopyState, setShareCopyState] = useState<"idle" | "copied" | "manual">("idle");
@@ -185,6 +189,8 @@ export default function Survey() {
   }
 
   async function submit() {
+    if (submittingRef.current) return;
+    submittingRef.current = true;
     setScreen("submitting");
     const headers = ["Časové razítko", ...QUESTIONS.map((q) => q.text)];
     const values = [
@@ -208,6 +214,7 @@ export default function Survey() {
       if (!res.ok) throw new Error("submit failed");
       setScreen("done");
     } catch {
+      submittingRef.current = false;
       setScreen("error");
     }
   }
