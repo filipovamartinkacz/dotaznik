@@ -71,7 +71,9 @@ Vícevýběrové otázky ukládají zaškrtnuté volby do jedné buňky spojené
 
 Report generovaný z CSV exportu Sheetu — headline metriky, křížení věku se zájmem o platformu, demografie, chování/preference, volné citace. Vizuál na míru brandu (barvy odvozené z `--primary`, ověřená barevná škála pro graf věk×zájem přes `dataviz` skill).
 
-**Zatím ruční pipeline** (skript mimo repo, ve scratch prostoru relace): uživatelka exportuje CSV ze Sheetu → nahraje do projektu → přegeneruje se HTML → vloží se do stránky Google Sites (Dashboard projektu) přes "Vložit HTML".
+**Zatím ruční pipeline** (skripty mimo repo, v `/tmp/dotaznik-report/`): uživatelka exportuje CSV ze Sheetu → nahraje do projektu → `compute_stats.py` spočítá `/tmp/survey_stats.json` z CSV → `generate.py` z něj vygeneruje HTML → vloží se do stránky Google Sites (Dashboard projektu) přes "Vložit HTML".
+
+`generate.py` generuje dvě varianty (fonty Livvic/Thasadith): `report.html` s vloženými fonty jako base64 (pro Claude Artifact — CSP tam blokuje externí požadavky) a `report-sites.html` s běžným `<link>` na Google Fonts (pro Sites — ověřeno 2026-08-17, sandbox pro vložené HTML tam `<link>` na fonty toleruje, na rozdíl od aktivního `fetch()`). Do `statistiky-report.html` v projektu se kopíruje ta druhá (link) varianta.
 
 **Plánovaná automatizace:** přepsat generování do Google Apps Script Web App (`doGet()`), vložitelné do Sites přes "Vložit URL", počítající statistiky živě ze Sheetu. Čeká se na schůzku uživatelky s Nikolou (doladění vzhledu/obsahu reportu) a na zpomalení frekvence potřebných refreshů (teď časté kvůli novosti dotazníku, za ~půl roku stačí měsíčně).
 
