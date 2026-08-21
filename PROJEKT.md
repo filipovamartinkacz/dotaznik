@@ -1,7 +1,7 @@
 # Dotazník JsemBlažená.cz — projektová dokumentace
 
 > Pracovní název: Dotaznik
-> Poslední aktualizace: 2026-08-11
+> Poslední aktualizace: 2026-08-21
 
 ---
 
@@ -76,6 +76,8 @@ Report generovaný z CSV exportu Sheetu — headline metriky, křížení věku 
 `generate.py` generuje dvě varianty (fonty Livvic/Thasadith): `report.html` s vloženými fonty jako base64 (pro Claude Artifact — CSP tam blokuje externí požadavky) a `report-sites.html` s běžným `<link>` na Google Fonts (pro Sites — ověřeno 2026-08-17, sandbox pro vložené HTML tam `<link>` na fonty toleruje, na rozdíl od aktivního `fetch()`). Do `statistiky-report.html` v projektu se kopíruje ta druhá (link) varianta.
 
 **Plánovaná automatizace:** přepsat generování do Google Apps Script Web App (`doGet()`), vložitelné do Sites přes "Vložit URL", počítající statistiky živě ze Sheetu. Čeká se na schůzku uživatelky s Nikolou (doladění vzhledu/obsahu reportu) a na zpomalení frekvence potřebných refreshů (teď časté kvůli novosti dotazníku, za ~půl roku stačí měsíčně).
+
+**Poslední regenerace:** k 20. 8. 2026, 145 odpovědí (90 % zájem, 85 % by doporučilo, 52 % chce newsletter, 44 % stáhlo e-book, 23 % odbornic se přihlásilo).
 
 ---
 
